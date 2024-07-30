@@ -4,7 +4,7 @@ import AvailabilityViewerWrapper from "./components/AvailabilityViewerWrapper";
 function App() {
   const availabilityOptions = {
     // Your options for the Availability Viewer
-    element_token: process.env.ELEMENT_TOKEN,
+    element_token: process.env.REACT_APP_ELEMENT_TOKEN,
     target_id: "cronofy-availability-viewer",
     availability_query: {
         participants: [
