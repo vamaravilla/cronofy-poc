@@ -1,8 +1,8 @@
-//import './App.css';
-import AvailabilityViewerWrapper from "./components/AvailabilityViewerWrapper";
+//import AvailabilityViewerWrapper from "./components/AvailabilityViewerWrapper";
+import AvailabilityRulesWrapper from "./components/AvailabilityRulesWrapper";
 
 function App() {
-  const availabilityOptions = {
+  /*const availabilityOptions = {
     // Your options for the Availability Viewer
     element_token: process.env.REACT_APP_ELEMENT_TOKEN,
     target_id: "cronofy-availability-viewer",
@@ -10,7 +10,9 @@ function App() {
         participants: [
             {
                 required: "all",
-                members: []
+                members: [
+                  { sub: "pro_ZqlnazHyMg3N6Glw" },
+              ]
             }
         ],
         required_duration: { minutes: 60 },
@@ -30,12 +32,32 @@ function App() {
         prefix: "custom-name"
     },
     callback: notification => console.log("callback", notification),
+  };*/
+
+  const availabilityOptionsRules = {
+    element_token: process.env.REACT_APP_ELEMENT_TOKEN,
+    target_id: "cronofy-availability-rules",
+    availability_rule_id: "work_hours",
+    demo: true,
+    config: {
+      start_time: "08:00",
+      end_time: "18:00",
+      duration: 60
+    },
+    styles: {
+        colors: {
+            available: "green",
+            unavailable: "red"
+        },
+        prefix: "custom-name"
+    },
+    tzid: "Etc/UTC"
   };
 
   return (
       <div>
           {/* Other application code */}
-          <AvailabilityViewerWrapper options={availabilityOptions} />
+          <AvailabilityRulesWrapper options={availabilityOptionsRules} />
       </div>
   );
 }
