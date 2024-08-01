@@ -4,21 +4,17 @@ import * as CronofyElements from "cronofy-elements";
 const AvailabilityRulesWrapper = ({ options }) => {
     const [element, setElement] = useState(null);
 
-    console.log('AvailabilityRulesWrapper - options: ', JSON.stringify(options));
-
     useEffect(() => {
-        if (!element) {
+        if (!element && options?.target_id) {
             setElement(
                 CronofyElements.AvailabilityRules(options)
             );
+        }else{
+            if(element && options?.target_id){
+                element.update(options);
+            }
         }
-    }, []);
-
-    useEffect(() => {
-        if (element) {
-            element.update(options);
-        }
-    }, [options]);
+    }, [options,element]);
 
     return <div id="cronofy-availability-rules" />;
 };

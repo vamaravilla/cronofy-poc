@@ -1,44 +1,44 @@
-//import AvailabilityViewerWrapper from "./components/AvailabilityViewerWrapper";
-import AvailabilityRulesWrapper from "./components/AvailabilityRulesWrapper";
+import React, { useState } from 'react';
+import './App.css';
+import { Tabs, Tab, Box, Typography } from '@mui/material';
+import AvailabilityRulesWrapper from './components/AvailabilityRulesWrapper';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 function App() {
-  /*const availabilityOptions = {
-    // Your options for the Availability Viewer
-    element_token: process.env.REACT_APP_ELEMENT_TOKEN,
-    target_id: "cronofy-availability-viewer",
-    availability_query: {
-        participants: [
-            {
-                required: "all",
-                members: [
-                  { sub: "pro_ZqlnazHyMg3N6Glw" },
-              ]
-            }
-        ],
-        required_duration: { minutes: 60 },
-        query_periods: [
-            { start: "2024-07-31T09:00:00Z", end: "2024-07-31T17:00:00Z" },
-            { start: "2024-08-01T09:00:00Z", end: "2024-08-01T17:00:00Z" },
-            { start: "2024-08-02T09:00:00Z", end: "2024-08-02T17:00:00Z" },
-            { start: "2024-08-03T09:00:00Z", end: "2024-08-03T17:00:00Z" }
-        ],
-    },
-    config: {
-        start_time: "09:00",
-        end_time: "15:30",
-        interval: 15
-    },
-    styles: {
-        prefix: "custom-name"
-    },
-    callback: notification => console.log("callback", notification),
-  };*/
+  const [value, setValue] = useState(1);
 
-  const availabilityOptionsRules = {
+  const availabilityOptions = {
     element_token: process.env.REACT_APP_ELEMENT_TOKEN,
     target_id: "cronofy-availability-rules",
-    availability_rule_id: "work_hours",
-    demo: true,
+    availability_rule_id: process.env.REACT_APP_AVAILABILITY_RULE_ID,
+    //demo: true,
+    data_center: "us",
     config: {
       start_time: "08:00",
       end_time: "18:00",
@@ -46,19 +46,45 @@ function App() {
     },
     styles: {
         colors: {
-            available: "green",
-            unavailable: "red"
+            available: "#E2FAC8",
+            unavailable: "#FFFFFF",
+            primary: "#29A74E"
         },
-        prefix: "custom-name"
+        prefix: "Mentoring"
     },
-    tzid: "Etc/UTC"
+    tzid: "America/Chicago"
+  };
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
-      <div>
-          {/* Other application code */}
-          <AvailabilityRulesWrapper options={availabilityOptionsRules} />
-      </div>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Calendar" {...a11yProps(0)} />
+          <Tab label="Mentor" {...a11yProps(1)} />
+          <Tab label="Mentee" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+      <TabPanel value={value} index={0}>
+        Create new Application Calendar
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <div className="calendar-container">
+          <div className="calendar-section left-section">
+            <p>Accelerator</p>
+          </div>
+          <div className="calendar-section right-section">
+            <AvailabilityRulesWrapper options={availabilityOptions} />
+          </div>
+        </div>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Mentee Content
+      </TabPanel>
+    </Box>
   );
 }
 

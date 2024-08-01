@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.calendar-container {
+  display: flex;
+}
+
+.calendar-section {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.left-section {
+  width: 20%;
+  background-color: #E9ECEF; /* Optional: Add background color for better visibility */
+}
+
+.right-section {
+  width: 80%;
+  background-color: #ffffff; /* Optional: Add background color for better visibility */
+}
