@@ -57,7 +57,7 @@ function App() {
   };
 
   const dateTimePickerOptions = {
-    element_token: "LmSP8k-hPgwmmH49u0_TMh8XXyKpIlFsgC0ZIZh2Gn5_YCl_2Q1wRw1n31Rjky1Yq4Dymb8Q4s5wF-8keTJN5Q",
+    element_token: process.env.REACT_APP_ELEMENT_TOKEN2,
     target_id: "cronofy-date-time-picker",
     availability_query: {
       participants: [
