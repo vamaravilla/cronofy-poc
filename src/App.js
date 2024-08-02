@@ -32,7 +32,7 @@ function a11yProps(index) {
 }
 
 function App() {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(0);
 
   const availabilityOptions = {
     element_token: process.env.REACT_APP_ELEMENT_TOKEN,
@@ -57,20 +57,20 @@ function App() {
   };
 
   const dateTimePickerOptions = {
-    element_token: "",
+    element_token: "LmSP8k-hPgwmmH49u0_TMh8XXyKpIlFsgC0ZIZh2Gn5_YCl_2Q1wRw1n31Rjky1Yq4Dymb8Q4s5wF-8keTJN5Q",
     target_id: "cronofy-date-time-picker",
     availability_query: {
       participants: [
           {
               required: "all",
               members: [
-                  { sub: "apc_66ab9f8e24be49012a59d6e5" },
+                  { sub: "apc_66ab9f8e24be49012a59d6e5", availability: true },
               ]
           }
       ],
       required_duration: { minutes: 60 },
       query_periods: [
-          { start: "2024-08-02T09:00:00Z", end: "2024-08-30T17:00:00Z" },
+          { start: "2024-08-03T09:00:00Z", end: "2024-08-30T17:00:00Z" },
       ]
     },
     styles: {
