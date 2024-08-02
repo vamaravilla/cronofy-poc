@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Tabs, Tab, Box, Typography } from '@mui/material';
 import AvailabilityRulesWrapper from './components/AvailabilityRulesWrapper';
+import DateTimePickerWrapper from './components/DateTimePickerWrapper';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,6 +56,30 @@ function App() {
     tzid: "America/Chicago"
   };
 
+  const dateTimePickerOptions = {
+    element_token: "",
+    target_id: "cronofy-date-time-picker",
+    availability_query: {
+      participants: [
+          {
+              required: "all",
+              members: [
+                  { sub: "apc_66ab9f8e24be49012a59d6e5" },
+              ]
+          }
+      ],
+      required_duration: { minutes: 60 },
+      query_periods: [
+          { start: "2024-08-02T09:00:00Z", end: "2024-08-30T17:00:00Z" },
+      ]
+    },
+    styles: {
+        prefix: "custom-name"
+    },
+    callback: notification => console.log("callback", notification),
+    tzid: "America/Chicago"
+  };
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -82,7 +107,14 @@ function App() {
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Mentee Content
+        <div className="calendar-container">
+          <div className="calendar-section left-section">
+            <p>Accelerator</p>
+          </div>
+          <div className="calendar-section right-section">
+            <DateTimePickerWrapper options={dateTimePickerOptions} />
+          </div>
+        </div>
       </TabPanel>
     </Box>
   );
