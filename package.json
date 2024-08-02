@@ -1,7 +1,6 @@
 {
   "name": "cronofy-poc2",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -17,7 +16,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "node server/server.js",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -40,8 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "serve": "^14.2.3"
   }
 }

@@ -53,7 +53,7 @@ function App() {
         },
         prefix: "Mentoring"
     },
-    tzid: "America/Chicago"
+    tzid: "America/New_York"
   };
 
   const dateTimePickerOptions = {
@@ -64,7 +64,7 @@ function App() {
           {
               required: "all",
               members: [
-                  { sub: "apc_66ab9f8e24be49012a59d6e5", availability: true },
+                  { sub: "apc_66ab9f8e24be49012a59d6e5", managed_availability: true },
               ]
           }
       ],
@@ -76,8 +76,11 @@ function App() {
     styles: {
         prefix: "custom-name"
     },
-    callback: notification => console.log("callback", notification),
-    tzid: "America/Chicago"
+    config: {
+      mode: "confirm" // no_confirm
+    },
+    //callback: notification => console.log("callback", notification),
+    tzid: "America/New_York"
   };
 
   const handleChange = (event, newValue) => {
