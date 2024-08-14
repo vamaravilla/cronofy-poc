@@ -39,5 +39,18 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+              const cronofyAvailabilityRules = document.getElementById('cronofy-availability-rules');
+              if(cronofyAvailabilityRules){
+                cronofyAvailabilityRules.children[0].children[0].setAttribute('style','display:none;');
+              }else{
+                console.log('Not found');
+              }
+            }, 1000); // Delay of 2 seconds
+        });
+     
+    </script>
   </body>
 </html>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import * as CronofyElements from "cronofy-elements";
 
-const DateTimePickerWrapper = ({ options }) => {
+const AvailabilityViewerWrapper = ({ options }) => {
     const [element, setElement] = useState(null);
 
     useEffect(() => {
         if (!element && options?.target_id) {
             setElement(
-                CronofyElements.DateTimePicker(options)
+                CronofyElements.AvailabilityViewer(options)
             );
         }else{
             if(element && options?.target_id){
@@ -16,7 +16,7 @@ const DateTimePickerWrapper = ({ options }) => {
         }
     }, [options,element]);
 
-    return <div id="cronofy-date-time-picker" />;
+    return <div id="cronofy-availability-viewer" />;
 };
 
-export default DateTimePickerWrapper;
+export default AvailabilityViewerWrapper;
