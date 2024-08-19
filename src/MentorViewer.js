@@ -7,11 +7,11 @@ import axios from 'axios';
 
 const MentorViewer = () => {
   const { token } = useParams();
-  //const [elementToken, setElementToken] = useState(process.env.ELEMENT_TOKEN);
-  //const [loading, setLoading] = useState(false);
-  //const [error, setError] = useState(null);
+  const [elementToken, setElementToken] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  /*useEffect(() => {
+  useEffect(() => {
     axios.get(`https://api.dev.ceresa.com/api/v1/calendars/mentor-scheduler/${token}`,{ headers: { 'api-key': 'team@ceresa'}})
       .then(response => {
         //console.log('RESPONSE: ',JSON.stringify(response));
@@ -25,7 +25,7 @@ const MentorViewer = () => {
 
       //setElementToken(process.env.REACT_APP_ELEMENT_TOKEN);
       //setLoading(false);
-  }, [token]);*/
+  }, [token]);
 
   /*useEffect(() => {
     axios.post("https://api.cronofy.com/v1/element_tokens",
@@ -51,7 +51,7 @@ const MentorViewer = () => {
   }, [token]);*/
 
   const viewerOptions = {
-    element_token: process.env.REACT_APP_ELEMENT_TOKEN2,
+    element_token: elementToken,
     target_id: "cronofy-availability-viewer",
     availability_query: {
         participants: [
@@ -64,7 +64,7 @@ const MentorViewer = () => {
         ],
         required_duration: { minutes: 90 },
         query_periods: [
-          { start: "2024-08-15T09:00:00Z", end: "2024-08-15T17:00:00Z" },
+          { start: "2024-08-26T09:00:00Z", end: "2024-08-15T17:00:00Z" },
         ],
     },
     config: {
@@ -82,13 +82,13 @@ const MentorViewer = () => {
 
  
 
-  /*if (loading) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  }*/
+  }
 
   return (
     <div className="calendar-container">
