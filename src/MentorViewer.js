@@ -10,7 +10,6 @@ const MentorViewer = () => {
   //const [elementToken, setElementToken] = useState(process.env.ELEMENT_TOKEN);
   //const [loading, setLoading] = useState(false);
   //const [error, setError] = useState(null);
-  const elementToken = process.env.ELEMENT_TOKEN;
 
   /*useEffect(() => {
     axios.get(`https://api.dev.ceresa.com/api/v1/calendars/mentor-scheduler/${token}`,{ headers: { 'api-key': 'team@ceresa'}})
@@ -52,7 +51,7 @@ const MentorViewer = () => {
   }, [token]);*/
 
   const viewerOptions = {
-    element_token: elementToken,
+    element_token: process.env.REACT_APP_ELEMENT_TOKEN2,
     target_id: "cronofy-availability-viewer",
     availability_query: {
         participants: [
