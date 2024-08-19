@@ -11,11 +11,34 @@ const MentorViewer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     axios.get(`https://api.dev.ceresa.com/api/v1/calendars/mentor-scheduler/${token}`,{ headers: { 'api-key': 'team@ceresa'}})
       .then(response => {
         //console.log('RESPONSE: ',JSON.stringify(response));
         setElementToken(response?.data?.data?.elementToken);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error);
+        setLoading(false);
+      });
+
+      //setElementToken(process.env.REACT_APP_ELEMENT_TOKEN);
+      //setLoading(false);
+  }, [token]);*/
+
+  useEffect(() => {
+    axios.post(`https://api.cronofy.com/v1/element_tokens`,
+      {
+      version: 1,
+      permissions: ['availability'],
+      subs: [token],
+      origin: token === 'apc_66baa129920f17390cd9974c' ? 'https://cronofy-poc.vercel.app' : 'http://localhost:3000',
+      },
+      { headers: { Authorization: `Bearer CRN_vsYTVaMBtBLKkw8DC9YTCbu51Pu3xSQyK3K8LA` } })
+      .then(response => {
+        //console.log('RESPONSE: ',JSON.stringify(response));
+        setElementToken(response?.data['element_token']?.token);
         setLoading(false);
       })
       .catch(error => {
