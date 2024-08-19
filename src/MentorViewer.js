@@ -7,9 +7,10 @@ import axios from 'axios';
 
 const MentorViewer = () => {
   const { token } = useParams();
-  const [elementToken, setElementToken] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  //const [elementToken, setElementToken] = useState(process.env.ELEMENT_TOKEN);
+  //const [loading, setLoading] = useState(false);
+  //const [error, setError] = useState(null);
+  const elementToken = process.env.ELEMENT_TOKEN;
 
   /*useEffect(() => {
     axios.get(`https://api.dev.ceresa.com/api/v1/calendars/mentor-scheduler/${token}`,{ headers: { 'api-key': 'team@ceresa'}})
@@ -27,15 +28,15 @@ const MentorViewer = () => {
       //setLoading(false);
   }, [token]);*/
 
-  useEffect(() => {
-    axios.post(`https://api.cronofy.com/v1/element_tokens`,
+  /*useEffect(() => {
+    axios.post("https://api.cronofy.com/v1/element_tokens",
       {
-      version: 1,
-      permissions: ['availability'],
+      version: "1",
+      permissions: ["availability"],
       subs: [token],
-      origin: token === 'apc_66baa129920f17390cd9974c' ? 'https://cronofy-poc.vercel.app' : 'http://localhost:3000',
+      origin: token === "apc_66baa129920f17390cd9974cx" ? "https://cronofy-poc.vercel.app" : "http://localhost:3000",
       },
-      { headers: { Authorization: `Bearer CRN_vsYTVaMBtBLKkw8DC9YTCbu51Pu3xSQyK3K8LA` } })
+      { headers: { Authorization: "Bearer CRN_vsYTVaMBtBLKkw8DC9YTCbu51Pu3xSQyK3K8LA" } })
       .then(response => {
         //console.log('RESPONSE: ',JSON.stringify(response));
         setElementToken(response?.data['element_token']?.token);
@@ -48,7 +49,7 @@ const MentorViewer = () => {
 
       //setElementToken(process.env.REACT_APP_ELEMENT_TOKEN);
       //setLoading(false);
-  }, [token]);
+  }, [token]);*/
 
   const viewerOptions = {
     element_token: elementToken,
