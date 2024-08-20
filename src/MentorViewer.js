@@ -8,13 +8,13 @@ import axios from 'axios';
 const MentorViewer = () => {
   const { token } = useParams();
   const [elementToken, setElementToken] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     axios.get(`https://api.dev.ceresa.com/api/v1/calendars/mentor-scheduler/${token}`,{ headers: { 'api-key': 'team@ceresa'}})
       .then(response => {
-        //console.log('RESPONSE: ',JSON.stringify(response));
+        //console.log('RESPONSE: ',response?.data?.data?.elementToken);
         setElementToken(response?.data?.data?.elementToken);
         setLoading(false);
       })
@@ -23,33 +23,10 @@ const MentorViewer = () => {
         setLoading(false);
       });
 
-      //setElementToken(process.env.REACT_APP_ELEMENT_TOKEN);
-      //setLoading(false);
   }, [token]);
 
-  /*useEffect(() => {
-    axios.post("https://api.cronofy.com/v1/element_tokens",
-      {
-      version: "1",
-      permissions: ["availability"],
-      subs: [token],
-      origin: token === "apc_66baa129920f17390cd9974cx" ? "https://cronofy-poc.vercel.app" : "http://localhost:3000",
-      },
-      { headers: { Authorization: "Bearer CRN_vsYTVaMBtBLKkw8DC9YTCbu51Pu3xSQyK3K8LA" } })
-      .then(response => {
-        //console.log('RESPONSE: ',JSON.stringify(response));
-        setElementToken(response?.data['element_token']?.token);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
 
-      //setElementToken(process.env.REACT_APP_ELEMENT_TOKEN);
-      //setLoading(false);
-  }, [token]);*/
-
+  const today = new Date();
   const viewerOptions = {
     element_token: elementToken,
     target_id: "cronofy-availability-viewer",
@@ -64,7 +41,7 @@ const MentorViewer = () => {
         ],
         required_duration: { minutes: 90 },
         query_periods: [
-          { start: "2024-08-26T09:00:00Z", end: "2024-08-15T17:00:00Z" },
+          { start: `${today.toISOString().split('T')[0]}T12:00:00Z`, end: "2024-08-30T17:00:00Z" },
         ],
     },
     config: {
